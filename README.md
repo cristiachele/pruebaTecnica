@@ -1,4 +1,4 @@
-# Proyecto Bancario - Full Stack
+# Proyecto Bancario
 
 Sistema bancario completo desarrollado con Spring Boot (Backend) y React (Frontend), siguiendo arquitectura hexagonal y mejores prácticas de desarrollo.
 
