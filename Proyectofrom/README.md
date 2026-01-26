@@ -173,4 +173,4 @@ proxy: {
 
 ## Autor
 
-Sistema Bancario - Proyecto de Evaluación
+Cristian Chele Tapia
