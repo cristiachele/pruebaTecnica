@@ -25,19 +25,17 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import ec.com.dinersclub.proyectobancario.adapter.input.web.dto.ClienteRequest;
-import ec.com.dinersclub.proyectobancario.adapter.input.web.dto.ClienteResponse;
-import ec.com.dinersclub.proyectobancario.adapter.input.web.mapper.ClienteMapper;
-import ec.com.dinersclub.proyectobancario.application.usecase.ClienteUseCase;
-import ec.com.dinersclub.proyectobancario.domain.model.Cliente;
+import ec.com.banco.proyectobancario.adapter.input.web.controller.ClienteController;
+import ec.com.banco.proyectobancario.adapter.input.web.dto.ClienteRequest;
+import ec.com.banco.proyectobancario.adapter.input.web.dto.ClienteResponse;
+import ec.com.banco.proyectobancario.adapter.input.web.mapper.ClienteMapper;
+import ec.com.banco.proyectobancario.application.usecase.ClienteUseCase;
+import ec.com.banco.proyectobancario.domain.model.Cliente;
+import tools.jackson.databind.ObjectMapper;
 
 /**
  * Pruebas unitarias para ClienteController.
  * 
- * @author Sistema Bancario
- * @version 1.0.0
  */
 @ExtendWith(MockitoExtension.class)
 @DisplayName("Pruebas del controlador de clientes")

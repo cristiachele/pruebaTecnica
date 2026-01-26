@@ -4,7 +4,7 @@ Sistema bancario desarrollado con Spring Boot, Maven y arquitectura hexagonal.
 
 ## Requisitos Previos
 
-- Java 17 o superior
+- Java 21 o superior
 - Maven 3.6 o superior
 - Docker y Docker Compose (para ejecución con contenedores)
 - PostgreSQL 15 (si se ejecuta sin Docker)
@@ -205,7 +205,7 @@ app:
 - Asegúrate de que la base de datos `bancodb` exista
 
 ### Error al compilar
-- Verifica que tengas Java 17 instalado: `java -version`
+- Verifica que tengas Java 21 instalado: `java -version`
 - Limpia y recompila: `mvn clean install`
 
 ### Puerto 8080 en uso
@@ -213,4 +213,4 @@ app:
 
 ## Autor
 
-Sistema Bancario - Proyecto de Evaluación
+Cristian Chele Tapia

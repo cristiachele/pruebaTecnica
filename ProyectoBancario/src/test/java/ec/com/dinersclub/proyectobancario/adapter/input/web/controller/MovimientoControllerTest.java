@@ -26,20 +26,20 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
-import ec.com.dinersclub.proyectobancario.adapter.input.web.dto.MovimientoRequest;
-import ec.com.dinersclub.proyectobancario.adapter.input.web.dto.MovimientoResponse;
-import ec.com.dinersclub.proyectobancario.adapter.input.web.mapper.MovimientoMapper;
-import ec.com.dinersclub.proyectobancario.application.usecase.MovimientoUseCase;
-import ec.com.dinersclub.proyectobancario.domain.model.Movimiento;
+import ec.com.banco.proyectobancario.adapter.input.web.controller.MovimientoController;
+import ec.com.banco.proyectobancario.adapter.input.web.dto.MovimientoRequest;
+import ec.com.banco.proyectobancario.adapter.input.web.dto.MovimientoResponse;
+import ec.com.banco.proyectobancario.adapter.input.web.mapper.MovimientoMapper;
+import ec.com.banco.proyectobancario.application.usecase.MovimientoUseCase;
+import ec.com.banco.proyectobancario.domain.model.Movimiento;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * Pruebas unitarias para MovimientoController.
  * 
- * @author Sistema Bancario
- * @version 1.0.0
  */
 @ExtendWith(MockitoExtension.class)
 @DisplayName("Pruebas del controlador de movimientos")
