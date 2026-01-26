@@ -18,7 +18,6 @@ Sistema bancario completo desarrollado con Spring Boot (Backend) y React (Fronte
 │   ├── Dockerfile
 │   ├── BaseDatos.sql
 │   ├── Postman_Collection.json
-│   ├── CURL_Commands.md
 │   └── README.md
 │
 └── Proyectofrom/          # Frontend (React)
@@ -31,7 +30,7 @@ Sistema bancario completo desarrollado con Spring Boot (Backend) y React (Fronte
 ## Requisitos Previos
 
 ### Para Backend
-- Java 17 o superior
+- Java 21 o superior
 - Maven 3.6 o superior
 - Docker y Docker Compose (recomendado)
 - PostgreSQL 15 (si no usas Docker)
@@ -238,9 +237,8 @@ Ver `ProyectoBancario/README.md` para documentación completa.
 
 - **Backend:** Ver `ProyectoBancario/README.md`
 - **Frontend:** Ver `Proyectofrom/README.md`
-- **CURL Commands:** Ver `ProyectoBancario/CURL_Commands.md`
 - **Postman Collection:** `ProyectoBancario/Postman_Collection.json`
 
 ## Autor
 
-Sistema Bancario - Proyecto de Evaluación Técnica
+Cristian Chele Tapia
