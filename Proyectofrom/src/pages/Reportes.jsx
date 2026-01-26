@@ -1,46 +1,56 @@
 import React, { useState, useEffect } from 'react';
 import { reporteService, clienteService } from '../services/api';
+import { useForm } from '../hooks/useForm'; // Hook personalizado para formularios
+import { downloadPdfFromBase64 } from '../utils/fileDownloader'; // Utilidad de descarga
 import './PageStyles.css';
 
-const Reportes = () => {
+// Hook personalizado para la lógica de la página
+const useReportes = () => {
   const [clientes, setClientes] = useState([]);
-  const [reporte, setReporte] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [formData, setFormData] = useState({
-    clienteId: '',
-    fechaInicio: '',
-    fechaFin: '',
-  });
-  const [errors, setErrors] = useState({});
   const [message, setMessage] = useState('');
 
   useEffect(() => {
+    const loadClientes = async () => {
+      try {
+        const response = await clienteService.getAll();
+        setClientes(response.data);
+      } catch (error) {
+        setMessage('Error al cargar clientes: ' + error.message);
+      }
+    };
     loadClientes();
   }, []);
 
-  const loadClientes = async () => {
-    try {
-      const response = await clienteService.getAll();
-      setClientes(response.data);
-    } catch (error) {
-      setMessage('Error al cargar clientes: ' + error.message);
-    }
+  return { clientes, message, setMessage };
+};
+
+const Reportes = () => {
+  const [reporte, setReporte] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const { clientes, message, setMessage } = useReportes();
+
+  const initialState = {
+    clienteId: '',
+    fechaInicio: '',
+    fechaFin: '',
   };
 
-  const validateForm = () => {
+  const validate = (form) => {
     const newErrors = {};
-    if (!formData.clienteId) newErrors.clienteId = 'El cliente es obligatorio';
-    if (!formData.fechaInicio) newErrors.fechaInicio = 'La fecha de inicio es obligatoria';
-    if (!formData.fechaFin) newErrors.fechaFin = 'La fecha de fin es obligatoria';
-    if (formData.fechaInicio && formData.fechaFin && formData.fechaInicio > formData.fechaFin) {
+    if (!form.clienteId) newErrors.clienteId = 'El cliente es obligatorio';
+    if (!form.fechaInicio) newErrors.fechaInicio = 'La fecha de inicio es obligatoria';
+    if (!form.fechaFin) newErrors.fechaFin = 'La fecha de fin es obligatoria';
+    if (form.fechaInicio && form.fechaFin && form.fechaInicio > form.fechaFin) {
       newErrors.fechaFin = 'La fecha de fin debe ser posterior a la fecha de inicio';
     }
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+    return newErrors;
   };
 
+  const { formData, errors, handleChange, handleSubmit } = useForm(initialState, validate);
+
   const handleGenerarReporte = async () => {
-    if (!validateForm()) return;
+    if (!handleSubmit()) return;
 
     setLoading(true);
     setMessage('');
@@ -63,50 +73,28 @@ const Reportes = () => {
   };
 
   const handleDescargarPdf = async () => {
-    if (!validateForm()) return;
+    if (!handleSubmit()) return;
 
     setLoading(true);
+    setMessage('');
     try {
       const fechaInicio = new Date(formData.fechaInicio);
       const fechaFin = new Date(formData.fechaFin);
       fechaFin.setHours(23, 59, 59, 999);
 
       const response = await reporteService.generarReportePdf(
-        parseInt(formData.clienteId),
-        fechaInicio,
-        fechaFin
+        parseInt(formData.clienteId), fechaInicio, fechaFin
       );
 
-      // Convertir base64 a blob y descargar
-      const pdfBase64 = response.data.pdf;
-      const byteCharacters = atob(pdfBase64);
-      const byteNumbers = new Array(byteCharacters.length);
-      for (let i = 0; i < byteCharacters.length; i++) {
-        byteNumbers[i] = byteCharacters.charCodeAt(i);
-      }
-      const byteArray = new Uint8Array(byteNumbers);
-      const blob = new Blob([byteArray], { type: 'application/pdf' });
-
-      const url = window.URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = `reporte_${formData.clienteId}_${formData.fechaInicio}_${formData.fechaFin}.pdf`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      window.URL.revokeObjectURL(url);
+      const fileName = `reporte_${formData.clienteId}_${formData.fechaInicio}_${formData.fechaFin}.pdf`;
+      downloadPdfFromBase64(response.data.pdf, fileName);
 
       setMessage('PDF descargado exitosamente');
     } catch (error) {
-      setMessage('Error al descargar PDF: ' + error.message);
+      setMessage('Error al descargar el PDF: ' + error.message);
     } finally {
       setLoading(false);
     }
-  };
-
-  const getClienteNombre = (clienteId) => {
-    const cliente = clientes.find((c) => c.id === clienteId);
-    return cliente ? cliente.nombre : clienteId;
   };
 
   return (
@@ -126,7 +114,8 @@ const Reportes = () => {
           <label>Cliente *</label>
           <select
             value={formData.clienteId}
-            onChange={(e) => setFormData({ ...formData, clienteId: e.target.value })}
+            name="clienteId"
+            onChange={handleChange}
           >
             <option value="">Seleccione un cliente...</option>
             {clientes.map((cliente) => (
@@ -143,7 +132,8 @@ const Reportes = () => {
           <input
             type="date"
             value={formData.fechaInicio}
-            onChange={(e) => setFormData({ ...formData, fechaInicio: e.target.value })}
+            name="fechaInicio"
+            onChange={handleChange}
           />
           {errors.fechaInicio && <span className="error-text">{errors.fechaInicio}</span>}
         </div>
@@ -153,7 +143,8 @@ const Reportes = () => {
           <input
             type="date"
             value={formData.fechaFin}
-            onChange={(e) => setFormData({ ...formData, fechaFin: e.target.value })}
+            name="fechaFin"
+            onChange={handleChange}
           />
           {errors.fechaFin && <span className="error-text">{errors.fechaFin}</span>}
         </div>

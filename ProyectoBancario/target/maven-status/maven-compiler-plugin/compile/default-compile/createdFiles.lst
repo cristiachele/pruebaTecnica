@@ -19,13 +19,10 @@ ec\com\banco\proyectobancario\infrastructure\persistence\mapper\ClienteMapper.cl
 ec\com\banco\proyectobancario\infrastructure\persistence\repository\ClienteJpaRepository.class
 ec\com\banco\proyectobancario\adapter\input\web\controller\MovimientoController.class
 ec\com\banco\proyectobancario\adapter\input\web\dto\ClienteResponse.class
-ec\com\banco\proyectobancario\application\usecase\copy\CuentaUseCase.class
 ec\com\banco\proyectobancario\domain\model\TipoMovimiento.class
 ec\com\banco\proyectobancario\adapter\input\web\mapper\ClienteMapper.class
 ec\com\banco\proyectobancario\application\usecase\CuentaUseCase.class
 ec\com\banco\proyectobancario\infrastructure\persistence\mapper\MovimientoMapper.class
-ec\com\banco\proyectobancario\application\usecase\copy\MovimientoUseCase.class
-ec\com\banco\proyectobancario\config\copy\UseCaseConfig.class
 ec\com\banco\proyectobancario\domain\model\Movimiento.class
 ec\com\banco\proyectobancario\adapter\input\web\mapper\CuentaMapper.class
 ec\com\banco\proyectobancario\adapter\input\web\dto\MovimientoResponse.class
@@ -37,11 +34,9 @@ ec\com\banco\proyectobancario\domain\model\TipoCuenta.class
 ec\com\banco\proyectobancario\infrastructure\persistence\adapter\MovimientoRepositoryAdapter.class
 ec\com\banco\proyectobancario\domain\model\ReporteEstadoCuenta$CuentaReporte.class
 ec\com\banco\proyectobancario\adapter\input\web\controller\ReporteController.class
-ec\com\banco\proyectobancario\application\usecase\copy\ReporteUseCase.class
 ec\com\banco\proyectobancario\application\usecase\ReporteUseCase.class
 ec\com\banco\proyectobancario\domain\model\ReporteEstadoCuenta.class
 ec\com\banco\proyectobancario\infrastructure\persistence\repository\MovimientoJpaRepository.class
-ec\com\banco\proyectobancario\application\usecase\copy\ClienteUseCase.class
 ec\com\banco\proyectobancario\infrastructure\persistence\mapper\CuentaMapper.class
 ec\com\banco\proyectobancario\domain\port\output\CuentaRepositoryPort.class
 ec\com\banco\proyectobancario\adapter\input\web\dto\ErrorResponse.class

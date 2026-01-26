@@ -5,7 +5,7 @@ Sistema bancario desarrollado con Spring Boot, Maven y arquitectura hexagonal.
 ## Requisitos Previos
 
 - Java 21 o superior
-- Maven 3.6 o superior
+- Maven 3.9.12 o superior
 - Docker y Docker Compose (para ejecución con contenedores)
 - PostgreSQL 15 (si se ejecuta sin Docker)
 
@@ -17,7 +17,7 @@ El proyecto sigue una arquitectura hexagonal (puertos y adaptadores):
 src/
 ├── main/
 │   ├── java/
-│   │   └── ec/com/dinersclub/proyectobancario/
+│   │   └── ec/com/bamco/proyectobancario/
 │   │       ├── domain/              # Capa de dominio
 │   │       │   ├── model/           # Entidades del dominio
 │   │       │   └── port/            # Puertos (interfaces)
@@ -179,7 +179,7 @@ app:
 
 ## Tecnologías Utilizadas
 
-- **Spring Boot 3.2.0**
+- **Spring Boot 4.0.2**
 - **Spring Data JPA**
 - **PostgreSQL**
 - **Lombok**

@@ -1,0 +1,86 @@
+version: '3.8'
+
+# Docker Compose unificado para ProyectoBancario (Backend) y Proyectofrom (Frontend)
+# Este archivo orquesta todos los servicios necesarios para ejecutar la aplicación completa
+
+services:
+  # ============================================
+  # BASE DE DATOS POSTGRESQL
+  # ============================================
+  postgres:
+    image: postgres:15-alpine
+    container_name: banco-postgres
+    environment:
+      POSTGRES_DB: bancodb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./ProyectoBancario/BaseDatos.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - banco-network
+
+  # ============================================
+  # BACKEND - Spring Boot (ProyectoBancario)
+  # ============================================
+  backend:
+    build:
+      context: ./ProyectoBancario
+      dockerfile: Dockerfile
+    container_name: banco-backend
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/bancodb
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "sh -c ':> /dev/tcp/127.0.0.1/8080' || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 90s
+    networks:
+      - banco-network
+    restart: unless-stopped
+
+  # ============================================
+  # FRONTEND - React (Proyectofrom)
+  # ============================================
+  frontend:
+    build:
+      context: ./Proyectofrom
+      dockerfile: Dockerfile
+    container_name: banco-frontend
+    depends_on:
+      backend:
+        condition: service_started
+    ports:
+      - "80:80"
+    networks:
+      - banco-network
+    restart: unless-stopped
+
+# ============================================
+# VOLÚMENES
+# ============================================
+volumes:
+  postgres_data:
+    driver: local
+
+# ============================================
+# REDES
+# ============================================
+networks:
+  banco-network:
+    driver: bridge

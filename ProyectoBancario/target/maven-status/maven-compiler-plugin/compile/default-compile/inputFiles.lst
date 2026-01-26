@@ -14,14 +14,9 @@ C:\Users\crist\Documents\AplicacionesDEV\spring-tools-for-eclipse\worksapace\Pro
 C:\Users\crist\Documents\AplicacionesDEV\spring-tools-for-eclipse\worksapace\ProyectoBancario\src\main\java\ec\com\banco\proyectobancario\adapter\input\web\mapper\CuentaMapper.java
 C:\Users\crist\Documents\AplicacionesDEV\spring-tools-for-eclipse\worksapace\ProyectoBancario\src\main\java\ec\com\banco\proyectobancario\adapter\input\web\mapper\MovimientoMapper.java
 C:\Users\crist\Documents\AplicacionesDEV\spring-tools-for-eclipse\worksapace\ProyectoBancario\src\main\java\ec\com\banco\proyectobancario\application\usecase\ClienteUseCase.java
-C:\Users\crist\Documents\AplicacionesDEV\spring-tools-for-eclipse\worksapace\ProyectoBancario\src\main\java\ec\com\banco\proyectobancario\application\usecase\copy\ClienteUseCase.java
-C:\Users\crist\Documents\AplicacionesDEV\spring-tools-for-eclipse\worksapace\ProyectoBancario\src\main\java\ec\com\banco\proyectobancario\application\usecase\copy\CuentaUseCase.java
-C:\Users\crist\Documents\AplicacionesDEV\spring-tools-for-eclipse\worksapace\ProyectoBancario\src\main\java\ec\com\banco\proyectobancario\application\usecase\copy\MovimientoUseCase.java
-C:\Users\crist\Documents\AplicacionesDEV\spring-tools-for-eclipse\worksapace\ProyectoBancario\src\main\java\ec\com\banco\proyectobancario\application\usecase\copy\ReporteUseCase.java
 C:\Users\crist\Documents\AplicacionesDEV\spring-tools-for-eclipse\worksapace\ProyectoBancario\src\main\java\ec\com\banco\proyectobancario\application\usecase\CuentaUseCase.java
 C:\Users\crist\Documents\AplicacionesDEV\spring-tools-for-eclipse\worksapace\ProyectoBancario\src\main\java\ec\com\banco\proyectobancario\application\usecase\MovimientoUseCase.java
 C:\Users\crist\Documents\AplicacionesDEV\spring-tools-for-eclipse\worksapace\ProyectoBancario\src\main\java\ec\com\banco\proyectobancario\application\usecase\ReporteUseCase.java
-C:\Users\crist\Documents\AplicacionesDEV\spring-tools-for-eclipse\worksapace\ProyectoBancario\src\main\java\ec\com\banco\proyectobancario\config\copy\UseCaseConfig.java
 C:\Users\crist\Documents\AplicacionesDEV\spring-tools-for-eclipse\worksapace\ProyectoBancario\src\main\java\ec\com\banco\proyectobancario\config\UseCaseConfig.java
 C:\Users\crist\Documents\AplicacionesDEV\spring-tools-for-eclipse\worksapace\ProyectoBancario\src\main\java\ec\com\banco\proyectobancario\domain\model\Cliente.java
 C:\Users\crist\Documents\AplicacionesDEV\spring-tools-for-eclipse\worksapace\ProyectoBancario\src\main\java\ec\com\banco\proyectobancario\domain\model\Cuenta.java
